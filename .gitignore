@@ -141,14 +141,12 @@ js/node_modules
 js/test-results
 js/playwright-report
 js/*.tgz
-ccflow_celery/extension
 
 # Jupyter
 .ipynb_checkpoints
 .autoversion
 Untitled*.ipynb
-!ccflow_celery/extension/ccflow_celery.json
-!ccflow_celery/extension/install.json
+ccflow_celery/extension
 ccflow_celery/nbextension
 ccflow_celery/labextension
 
@@ -157,3 +155,7 @@ ccflow_celery/labextension
 
 # Rust
 target
+
+# Hydra
+outputs/
+multirun/
