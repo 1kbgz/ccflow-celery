@@ -76,6 +76,7 @@ branch = true
 omit = [
     "ccflow_celery/tests/integration/",
 ]
+
 [tool.coverage.report]
 exclude_also = [
     "raise NotImplementedError",
