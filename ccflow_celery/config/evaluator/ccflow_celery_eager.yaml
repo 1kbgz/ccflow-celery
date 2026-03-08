@@ -1,0 +1,16 @@
+# @package cli.model
+# Celery evaluator in eager mode — tasks run locally, no broker required.
+# Apply via Hydra override: evaluator=ccflow_celery_eager
+evaluator:
+  _target_: ccflow.evaluators.MultiEvaluator
+  evaluators:
+    - _target_: ccflow_celery.CeleryGraphEvaluator
+      app:
+        _target_: ccflow_celery.CeleryApp
+        name: ccflow
+        config:
+          _target_: ccflow_celery.CeleryConfig
+          broker_url: "memory://"
+          result_backend: "cache+memory://"
+          task_always_eager: true
+    - _target_: ccflow.evaluators.MemoryCacheEvaluator

@@ -71,6 +71,9 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
+    - name: Make Docs
+      run: yardang build
+
     - name: Make dist
       run: make dist
 
@@ -78,3 +81,4 @@ jobs:
       with:
         name: dist-${{matrix.os}}
         path: dist
+

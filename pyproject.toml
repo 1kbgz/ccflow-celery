@@ -29,7 +29,10 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 
-dependencies = []
+dependencies = [
+    "ccflow>=0.6.10",
+    "celery",
+]
 
 [project.optional-dependencies]
 develop = [
@@ -47,6 +50,7 @@ develop = [
     "ty",
     "uv",
     "wheel",
+    "yardang",
 ]
 
 [project.scripts]
@@ -138,3 +142,9 @@ section-order = [
     "F401",
     "F403",
 ]
+
+[tool.yardang]
+title = "ccflow-celery"
+root = "README.md"
+pages = []
+use-autoapi = true
