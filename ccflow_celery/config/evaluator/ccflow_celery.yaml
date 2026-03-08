@@ -1,0 +1,18 @@
+# @package cli.model
+# Celery evaluator — distributed graph execution via Celery workers.
+# Apply via Hydra override: evaluator=ccflow_celery
+#
+# Requires a running Celery broker (e.g. Redis) and result backend.
+# Set broker/backend URLs via environment variables or override in this file.
+evaluator:
+  _target_: ccflow.evaluators.MultiEvaluator
+  evaluators:
+    - _target_: ccflow_celery.CeleryGraphEvaluator
+      celery_app:
+        _target_: ccflow_celery.CeleryApp
+        name: ccflow
+        config:
+          _target_: ccflow_celery.CeleryConfig
+          broker_url: ${oc.env:CELERY_BROKER_URL,redis://localhost:6379/0}
+          result_backend: ${oc.env:CELERY_RESULT_BACKEND,redis://localhost:6379/1}
+    - _target_: ccflow.evaluators.MemoryCacheEvaluator
