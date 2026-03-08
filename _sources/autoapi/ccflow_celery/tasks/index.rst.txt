@@ -1,0 +1,32 @@
+ccflow_celery.tasks
+===================
+
+.. py:module:: ccflow_celery.tasks
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ccflow_celery.tasks.execute_model_task
+
+
+Module Contents
+---------------
+
+.. py:function:: execute_model_task(model_class: str, model_config: dict, context_class: str, context_config: dict) -> dict
+
+   Execute a ccflow CallableModel on a Celery worker.
+
+   This is the Celery task function that reconstructs a model and context
+   from their serialized configurations and executes the model.
+
+   :param model_class: Fully qualified class name (e.g., "ccflow_s3.S3Model")
+   :param model_config: Dict of model configuration (pydantic model_dump)
+   :param context_class: Fully qualified class name for the context
+   :param context_config: Dict of context configuration (pydantic model_dump)
+
+   :returns: Dict representation of the result (model_dump)
+
+

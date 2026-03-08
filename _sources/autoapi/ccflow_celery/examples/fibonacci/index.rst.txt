@@ -1,0 +1,77 @@
+ccflow_celery.examples.fibonacci
+================================
+
+.. py:module:: ccflow_celery.examples.fibonacci
+
+.. autoapi-nested-parse::
+
+   Fibonacci example using ccflow-celery with local (eager) execution.
+
+   Demonstrates:
+   - Defining a CallableModel with __deps__ for dependency-graph discovery
+   - Using CeleryGraphEvaluator in eager mode (no message broker required)
+   - Graph-parallel dispatch of Fibonacci sub-problems
+
+   Usage:
+       python -m ccflow_celery.examples.fibonacci
+
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ccflow_celery.examples.fibonacci.FibonacciModel
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ccflow_celery.examples.fibonacci.main
+
+
+Module Contents
+---------------
+
+.. py:class:: FibonacciModel(/, **data: Any)
+
+   Bases: :py:obj:`ccflow.CallableModel`
+
+
+   Compute Fibonacci numbers via ccflow dependency graphs.
+
+   The graph evaluator calls __deps__ to discover the full dependency tree,
+   then dispatches each node as a Celery task in topological order.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: __call__(context: ccflow.GenericContext[int]) -> ccflow.GenericResult[int]
+
+      This method produces the result for the given context.
+
+      Instead of passing the context, one can pass an object that pydantic will try to validate as the context.
+      Additionally, if kwargs are passed instead of the context, it will use these to construct the context.
+
+
+
+   .. py:method:: __deps__(context: ccflow.GenericContext[int])
+
+      Overwrite this method to specify dependencies of this `CallableModel` that can then be used for parallelization
+      of the implicit `CallableModel` graph. The 'call graph' of a `CallableModel` is implicitly defined by the calls
+      made in the `__call__` function of a `CallableModel` to other `CallableModel`s. Since these dependencies can
+      only be discovered at runtime, it is given as an option to the user that they specify a `CallableModel`s
+      upstream dependencies in this function.
+
+
+
+.. py:function:: main()
+

@@ -1,0 +1,192 @@
+test_all
+========
+
+.. py:module:: test_all
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   test_all.TestCeleryConfig
+   test_all.TestCeleryApp
+   test_all._DummyContext
+   test_all._DummyModel
+   test_all.TestFQNHelpers
+   test_all.TestExecuteModelTask
+   test_all._FakeEvalContext
+   test_all.TestCeleryEvaluator
+   test_all.TestCeleryGraphEvaluator
+
+
+Module Contents
+---------------
+
+.. py:class:: TestCeleryConfig
+
+   .. py:method:: test_defaults()
+
+
+   .. py:method:: test_custom()
+
+
+.. py:class:: TestCeleryApp
+
+   .. py:method:: test_defaults()
+
+
+   .. py:method:: test_get_app_creates_celery(MockCelery)
+
+
+   .. py:method:: test_get_app_caches(MockCelery)
+
+
+   .. py:method:: test_get_app_applies_task_routes(MockCelery)
+
+
+   .. py:method:: test_get_app_applies_worker_concurrency(MockCelery)
+
+
+.. py:class:: _DummyContext(/, **data: Any)
+
+   Bases: :py:obj:`ccflow.NullContext`
+
+
+   A Context represents an immutable argument to a callable model.
+
+   All contexts should derive from this base class.
+   A context is also a type of result, as a CallableModel could be responsible for generating a context
+   that is an input into another CallableModel.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+.. py:class:: _DummyModel(/, **data: Any)
+
+   Bases: :py:obj:`ccflow.CallableModel`
+
+
+   Generic base class for Callable Models, with a default implementation for __deps__.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:method:: __call__(context: _DummyContext) -> ccflow_celery.GenericResult
+
+      This method produces the result for the given context.
+
+      Instead of passing the context, one can pass an object that pydantic will try to validate as the context.
+      Additionally, if kwargs are passed instead of the context, it will use these to construct the context.
+
+
+
+.. py:class:: TestFQNHelpers
+
+   .. py:method:: test_model_fqn()
+
+
+   .. py:method:: test_context_fqn()
+
+
+.. py:class:: TestExecuteModelTask
+
+   .. py:method:: test_basic_execution()
+
+      Round-trip: serialise a simple model+context, execute in the task.
+
+
+
+   .. py:method:: test_result_has_model_dump()
+
+      If the model returns a ResultBase, execute_model_task returns model_dump().
+
+
+
+   .. py:method:: test_bad_class_path_raises()
+
+
+.. py:class:: _FakeEvalContext(model, context, fn='__call__')
+
+   Mimics ModelEvaluationContext for unit testing.
+
+
+   .. py:attribute:: model
+
+
+   .. py:attribute:: context
+
+
+   .. py:attribute:: fn
+      :value: '__call__'
+
+
+
+   .. py:attribute:: options
+
+
+   .. py:method:: __call__()
+
+
+.. py:class:: TestCeleryEvaluator
+
+   .. py:method:: _make_evaluator()
+
+
+   .. py:method:: test_remote_dispatch(MockCelery)
+
+
+   .. py:method:: test_non_call_fn_runs_locally()
+
+      When fn != '__call__', CeleryEvaluator executes locally.
+
+
+
+   .. py:method:: test_result_reconstruction_with_result_type(MockCelery)
+
+      When model has result_type, evaluator reconstructs from it.
+
+
+
+   .. py:method:: test_celery_app_caching(MockCelery)
+
+
+.. py:class:: TestCeleryGraphEvaluator
+
+   .. py:method:: _make_evaluator()
+
+
+   .. py:method:: test_reentrant_calls_locally()
+
+      When _is_evaluating is True, graph evaluator executes context() directly.
+
+
+
+   .. py:method:: test_single_node_graph(MockCelery, mock_get_dep)
+
+      Graph with one node dispatches via apply_async directly (no group).
+
+
+
+   .. py:method:: test_parallel_nodes_use_group(MockCelery, mock_group, mock_get_dep)
+
+      Multiple independent nodes at the same level use Celery group.
+
+
+
+   .. py:method:: test_is_evaluating_reset_on_exception(MockCelery, mock_get_dep)
+
+      _is_evaluating is reset even when graph processing raises.
+
+
+

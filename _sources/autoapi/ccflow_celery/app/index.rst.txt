@@ -1,0 +1,135 @@
+ccflow_celery.app
+=================
+
+.. py:module:: ccflow_celery.app
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ccflow_celery.app.CeleryConfig
+   ccflow_celery.app.CeleryApp
+
+
+Module Contents
+---------------
+
+.. py:class:: CeleryConfig(/, **data: Any)
+
+   Bases: :py:obj:`ccflow.BaseModel`
+
+
+   Configuration for a Celery application.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: broker_url
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: result_backend
+      :type:  Optional[str]
+      :value: None
+
+
+
+   .. py:attribute:: task_serializer
+      :type:  str
+      :value: 'json'
+
+
+
+   .. py:attribute:: result_serializer
+      :type:  str
+      :value: 'json'
+
+
+
+   .. py:attribute:: accept_content
+      :type:  list
+      :value: None
+
+
+
+   .. py:attribute:: task_track_started
+      :type:  bool
+      :value: True
+
+
+
+   .. py:attribute:: task_default_queue
+      :type:  str
+      :value: 'default'
+
+
+
+   .. py:attribute:: task_routes
+      :type:  Optional[Dict[str, str]]
+      :value: None
+
+
+
+   .. py:attribute:: worker_concurrency
+      :type:  Optional[int]
+      :value: None
+
+
+
+   .. py:attribute:: task_always_eager
+      :type:  bool
+      :value: None
+
+
+
+   .. py:attribute:: task_eager_propagates
+      :type:  bool
+      :value: None
+
+
+
+.. py:class:: CeleryApp(/, **data: Any)
+
+   Bases: :py:obj:`ccflow.BaseModel`
+
+
+   Wrapper around a Celery application instance.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: config
+      :type:  CeleryConfig
+      :value: None
+
+
+
+   .. py:attribute:: _app
+      :type:  Any
+      :value: None
+
+
+
+   .. py:method:: get_app()
+
+

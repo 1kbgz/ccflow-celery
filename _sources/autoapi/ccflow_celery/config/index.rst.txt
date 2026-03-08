@@ -1,0 +1,19 @@
+ccflow_celery.config
+====================
+
+.. py:module:: ccflow_celery.config
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ccflow_celery.config.load_config
+
+
+Package Contents
+----------------
+
+.. py:function:: load_config(overrides: Optional[List[str]] = None, overwrite: bool = False, config_dir: Optional[str] = None, config_key: Optional[str] = None, version_base: Optional[str] = None) -> ccflow.utils.hydra.ConfigLoadResult
+

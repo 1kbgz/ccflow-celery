@@ -1,0 +1,134 @@
+ccflow_celery.evaluators
+========================
+
+.. py:module:: ccflow_celery.evaluators
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ccflow_celery.evaluators.CeleryEvaluator
+   ccflow_celery.evaluators.CeleryGraphEvaluator
+
+
+Module Contents
+---------------
+
+.. py:class:: CeleryEvaluator(/, **data: Any)
+
+   Bases: :py:obj:`ccflow.EvaluatorBase`
+
+
+   Evaluator that dispatches model execution to Celery workers.
+
+   Serializes the model and context, submits as a Celery task,
+   and waits for the result. The model must be reconstructable from its
+   Pydantic config dump.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: app
+      :type:  ccflow_celery.app.CeleryApp
+      :value: None
+
+
+
+   .. py:attribute:: timeout
+      :type:  Optional[float]
+      :value: None
+
+
+
+   .. py:attribute:: task_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: _celery_app
+      :type:  Any
+      :value: None
+
+
+
+   .. py:method:: _get_celery_app()
+
+
+   .. py:method:: __call__(context: ccflow.callable.ModelEvaluationContext) -> Any
+
+      This method produces the result for the given context.
+
+      Instead of passing the context, one can pass an object that pydantic will try to validate as the context.
+      Additionally, if kwargs are passed instead of the context, it will use these to construct the context.
+
+
+
+.. py:class:: CeleryGraphEvaluator(/, **data: Any)
+
+   Bases: :py:obj:`ccflow.EvaluatorBase`
+
+
+   Evaluator that parallelizes DAG execution via Celery.
+
+   Builds the dependency graph (like GraphEvaluator), then submits
+   independent nodes as parallel Celery tasks using Celery groups.
+   Nodes that depend on other nodes wait for their dependencies first.
+
+   Create a new model by parsing and validating input data from keyword arguments.
+
+   Raises [`ValidationError`][pydantic_core.ValidationError] if the input data cannot be
+   validated to form a valid model.
+
+   `self` is explicitly positional-only to allow `self` as a field name.
+
+
+   .. py:attribute:: app
+      :type:  ccflow_celery.app.CeleryApp
+      :value: None
+
+
+
+   .. py:attribute:: timeout
+      :type:  Optional[float]
+      :value: None
+
+
+
+   .. py:attribute:: task_name
+      :type:  str
+      :value: None
+
+
+
+   .. py:attribute:: _celery_app
+      :type:  Any
+      :value: None
+
+
+
+   .. py:attribute:: _is_evaluating
+      :type:  bool
+      :value: None
+
+
+
+   .. py:method:: _get_celery_app()
+
+
+   .. py:method:: __call__(context: ccflow.callable.ModelEvaluationContext) -> Any
+
+      This method produces the result for the given context.
+
+      Instead of passing the context, one can pass an object that pydantic will try to validate as the context.
+      Additionally, if kwargs are passed instead of the context, it will use these to construct the context.
+
+
+
