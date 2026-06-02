@@ -264,7 +264,7 @@
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#test_all._DummyContext" title="test_all._DummyContext"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_DummyContext</span></code></a></p></td>
-<td><p>A Context represents an immutable argument to a callable model.</p></td>
+<td><p>A Null Context, used when no context is required.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#test_all._DummyModel" title="test_all._DummyModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_DummyModel</span></code></a></p></td>
 <td><p>Generic base class for Callable Models, with a default implementation for __deps__.</p></td>
@@ -339,10 +339,9 @@
 <dt class="sig sig-object py" id="test_all._DummyContext">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">test_all.</span></span><span class="sig-name descname"><span class="pre">_DummyContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_all._DummyContext" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ccflow.NullContext</span></code></p>
-<p>A Context represents an immutable argument to a callable model.</p>
-<p>All contexts should derive from this base class.
-A context is also a type of result, as a CallableModel could be responsible for generating a context
-that is an input into another CallableModel.</p>
+<p>A Null Context, used when no context is required.</p>
+<p>Any context can be passed where a NullContext is expected, but the model
+should not rely on any of its fields.</p>
 <p>Create a new model by parsing and validating input data from keyword arguments.</p>
 <p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
 validated to form a valid model.</p>

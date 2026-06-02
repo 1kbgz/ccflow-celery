@@ -53,11 +53,10 @@ Module Contents
    Bases: :py:obj:`ccflow.NullContext`
 
 
-   A Context represents an immutable argument to a callable model.
+   A Null Context, used when no context is required.
 
-   All contexts should derive from this base class.
-   A context is also a type of result, as a CallableModel could be responsible for generating a context
-   that is an input into another CallableModel.
+   Any context can be passed where a NullContext is expected, but the model
+   should not rely on any of its fields.
 
    Create a new model by parsing and validating input data from keyword arguments.
 
