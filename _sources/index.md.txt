@@ -21,5 +21,25 @@ Celery evaluator for ccflow
 
 ## Overview
 
+`ccflow-celery` provides a public, domain-neutral Celery-backed evaluator for `ccflow` callable models. It owns Celery app configuration, task serialization, worker execution, task routing, result handling, and Celery-specific operational documentation.
+
+Shared graph semantics, checkpoint models, retry policy definitions, and ETL run metadata should live in `ccflow` or `ccflow-etl` when they apply beyond Celery.
+
+## Current Status
+
+- Implemented: `CeleryEvaluator`, `CeleryGraphEvaluator`, Celery app configuration, task dispatch, task-side model/context reconstruction, and a Fibonacci example.
+- Partial: serialization hardening, result backend strategy, task routing, cancellation, timeout propagation, and integration with generic ETL retry/checkpoint metadata.
+- Missing: opt-in integration tests for worker execution, production-oriented deployment docs, and guidance for large results that should not be materialized through Celery result payloads.
+
+## Dependency Contract
+
+- Depends on `ccflow` and Celery.
+- May consume generic ETL metadata from `ccflow-etl` if the contract remains scheduler-neutral.
+- Must not depend on finance packages or application-specific packages.
+
+## Test Convention
+
+Default tests should run without a live broker by using eager/in-memory Celery modes or mocks. Tests that require Redis, RabbitMQ, or a real worker should be opt-in and skipped by default.
+
 > [!NOTE]
 > This library was generated using [copier](https://copier.readthedocs.io/en/stable/) from the [Base Python Project Template repository](https://github.com/python-project-templates/base).

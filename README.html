@@ -259,6 +259,28 @@
 <a class="reference external" href="https://pypi.python.org/pypi/ccflow-celery"><img alt="PyPI" src="https://img.shields.io/pypi/v/ccflow-celery.svg" /></a></p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ccflow-celery</span></code> provides a public, domain-neutral Celery-backed evaluator for <code class="docutils literal notranslate"><span class="pre">ccflow</span></code> callable models. It owns Celery app configuration, task serialization, worker execution, task routing, result handling, and Celery-specific operational documentation.</p>
+<p>Shared graph semantics, checkpoint models, retry policy definitions, and ETL run metadata should live in <code class="docutils literal notranslate"><span class="pre">ccflow</span></code> or <code class="docutils literal notranslate"><span class="pre">ccflow-etl</span></code> when they apply beyond Celery.</p>
+</section>
+<section id="current-status">
+<h2>Current Status<a class="headerlink" href="#current-status" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Implemented: <code class="docutils literal notranslate"><span class="pre">CeleryEvaluator</span></code>, <code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator</span></code>, Celery app configuration, task dispatch, task-side model/context reconstruction, and a Fibonacci example.</p></li>
+<li><p>Partial: serialization hardening, result backend strategy, task routing, cancellation, timeout propagation, and integration with generic ETL retry/checkpoint metadata.</p></li>
+<li><p>Missing: opt-in integration tests for worker execution, production-oriented deployment docs, and guidance for large results that should not be materialized through Celery result payloads.</p></li>
+</ul>
+</section>
+<section id="dependency-contract">
+<h2>Dependency Contract<a class="headerlink" href="#dependency-contract" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Depends on <code class="docutils literal notranslate"><span class="pre">ccflow</span></code> and Celery.</p></li>
+<li><p>May consume generic ETL metadata from <code class="docutils literal notranslate"><span class="pre">ccflow-etl</span></code> if the contract remains scheduler-neutral.</p></li>
+<li><p>Must not depend on finance packages or application-specific packages.</p></li>
+</ul>
+</section>
+<section id="test-convention">
+<h2>Test Convention<a class="headerlink" href="#test-convention" title="Link to this heading">¶</a></h2>
+<p>Default tests should run without a live broker by using eager/in-memory Celery modes or mocks. Tests that require Redis, RabbitMQ, or a real worker should be opt-in and skipped by default.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This library was generated using <a class="reference external" href="https://copier.readthedocs.io/en/stable/">copier</a> from the <a class="reference external" href="https://github.com/python-project-templates/base">Base Python Project Template repository</a>.</p>
@@ -305,6 +327,9 @@
             <ul>
 <li><a class="reference internal" href="#">ccflow-celery</a><ul>
 <li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#current-status">Current Status</a></li>
+<li><a class="reference internal" href="#dependency-contract">Dependency Contract</a></li>
+<li><a class="reference internal" href="#test-convention">Test Convention</a></li>
 </ul>
 </li>
 </ul>
