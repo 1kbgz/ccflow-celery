@@ -55,6 +55,9 @@ develop = [
 
 [project.scripts]
 
+[project.entry-points."hydra.lernaplugins"]
+ccflow-celery = "pkg:ccflow_celery.config"
+
 [project.urls]
 Repository = "https://github.com/1kbgz/ccflow-celery"
 Homepage = "https://github.com/1kbgz/ccflow-celery"
@@ -114,6 +117,11 @@ addopts = [
     "--junitxml=junit.xml",
 ]
 testpaths = "ccflow_celery/tests"
+markers = [
+    "integration: cross-package tests using only local synthetic fixtures",
+    "e2e: complete local workflow tests using only synthetic fixtures and local storage",
+    "live: tests requiring live provider credentials or external infrastructure",
+]
 
 [tool.ruff]
 line-length = 150
