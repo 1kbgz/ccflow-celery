@@ -38,7 +38,7 @@ Module Contents
 
 
    .. py:attribute:: result_backend
-      :type:  Optional[str]
+      :type:  str | None
       :value: None
 
 
@@ -74,13 +74,13 @@ Module Contents
 
 
    .. py:attribute:: task_routes
-      :type:  Optional[Dict[str, str]]
+      :type:  dict[str, str] | None
       :value: None
 
 
 
    .. py:attribute:: worker_concurrency
-      :type:  Optional[int]
+      :type:  int | None
       :value: None
 
 

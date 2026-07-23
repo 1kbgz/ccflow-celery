@@ -42,7 +42,7 @@ Module Contents
 
 
    .. py:attribute:: timeout
-      :type:  Optional[float]
+      :type:  float | None
       :value: None
 
 
@@ -97,7 +97,7 @@ Module Contents
 
 
    .. py:attribute:: timeout
-      :type:  Optional[float]
+      :type:  float | None
       :value: None
 
 

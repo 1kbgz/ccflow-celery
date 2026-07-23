@@ -246,7 +246,7 @@
           <h1>Source code for ccflow_celery.evaluators</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span><span class="w"> </span><span class="nn">graphlib</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">getLogger</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">ccflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">EvaluatorBase</span><span class="p">,</span> <span class="n">GenericResult</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ccflow.callable</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelEvaluationContext</span>
@@ -322,7 +322,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">app</span><span class="p">:</span> <span class="n">CeleryApp</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">CeleryApp</span><span class="p">)</span>
-    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Timeout in seconds for waiting on task result&quot;</span><span class="p">)</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Timeout in seconds for waiting on task result&quot;</span><span class="p">)</span>
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;ccflow_celery.tasks.execute_model_task&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Registered Celery task name&quot;</span><span class="p">)</span>
 
     <span class="n">_celery_app</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -369,7 +369,7 @@
             <span class="n">result_cls</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">result_type</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">result_cls</span><span class="p">(</span><span class="o">**</span><span class="n">result_data</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
                 <span class="k">pass</span>
 
         <span class="k">return</span> <span class="n">GenericResult</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">result_data</span><span class="p">)</span></div>
@@ -388,7 +388,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">app</span><span class="p">:</span> <span class="n">CeleryApp</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">CeleryApp</span><span class="p">)</span>
-    <span class="n">timeout</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">600.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Timeout for the entire graph execution&quot;</span><span class="p">)</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">600.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Timeout for the entire graph execution&quot;</span><span class="p">)</span>
     <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;ccflow_celery.tasks.execute_model_task&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Registered Celery task name&quot;</span><span class="p">)</span>
 
     <span class="n">_celery_app</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -472,7 +472,7 @@
                 <span class="n">result_cls</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">result_type</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">result_cls</span><span class="p">(</span><span class="o">**</span><span class="n">root_result</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
                     <span class="k">pass</span>
 
         <span class="k">return</span> <span class="n">GenericResult</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">root_result</span><span class="p">)</span></div>
