@@ -1,6 +1,6 @@
 import graphlib
 from logging import getLogger
-from typing import Any, Optional
+from typing import Any
 
 from ccflow import EvaluatorBase, GenericResult
 from ccflow.callable import ModelEvaluationContext
@@ -74,7 +74,7 @@ class CeleryEvaluator(EvaluatorBase):
     """
 
     app: CeleryApp = Field(default_factory=CeleryApp)
-    timeout: Optional[float] = Field(default=300.0, description="Timeout in seconds for waiting on task result")
+    timeout: float | None = Field(default=300.0, description="Timeout in seconds for waiting on task result")
     task_name: str = Field(default="ccflow_celery.tasks.execute_model_task", description="Registered Celery task name")
 
     _celery_app: Any = PrivateAttr(default=None)
@@ -116,7 +116,7 @@ class CeleryEvaluator(EvaluatorBase):
             result_cls = model.result_type
             try:
                 return result_cls(**result_data)
-            except Exception:
+            except (TypeError, ValueError):
                 pass
 
         return GenericResult(value=result_data)
@@ -131,7 +131,7 @@ class CeleryGraphEvaluator(EvaluatorBase):
     """
 
     app: CeleryApp = Field(default_factory=CeleryApp)
-    timeout: Optional[float] = Field(default=600.0, description="Timeout for the entire graph execution")
+    timeout: float | None = Field(default=600.0, description="Timeout for the entire graph execution")
     task_name: str = Field(default="ccflow_celery.tasks.execute_model_task", description="Registered Celery task name")
 
     _celery_app: Any = PrivateAttr(default=None)
@@ -210,7 +210,7 @@ class CeleryGraphEvaluator(EvaluatorBase):
                 result_cls = model.result_type
                 try:
                     return result_cls(**root_result)
-                except Exception:
+                except (TypeError, ValueError):
                     pass
 
         return GenericResult(value=root_result)
