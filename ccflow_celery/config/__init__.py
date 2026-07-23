@@ -1,5 +1,4 @@
 from pathlib import Path
-from typing import List, Optional
 
 from ccflow import ModelRegistry
 from ccflow.utils.hydra import ConfigLoadResult, load_config as base_load_config
@@ -8,11 +7,11 @@ __all__ = ("load_config",)
 
 
 def load_config(
-    overrides: Optional[List[str]] = None,
+    overrides: list[str] | None = None,
     overwrite: bool = False,
-    config_dir: Optional[str] = None,
-    config_key: Optional[str] = None,
-    version_base: Optional[str] = None,
+    config_dir: str | None = None,
+    config_key: str | None = None,
+    version_base: str | None = None,
 ) -> ConfigLoadResult:
     parent_dir = str(Path(__file__).resolve().parent)
     result = base_load_config(

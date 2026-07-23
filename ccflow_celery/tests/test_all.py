@@ -3,7 +3,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 from ccflow import CallableModel, Flow, GenericResult, NullContext
 
-from ccflow_celery import *  # noqa: F403
+from ccflow_celery import *
 from ccflow_celery.app import CeleryApp, CeleryConfig
 from ccflow_celery.evaluators import CeleryEvaluator, CeleryGraphEvaluator, _context_fqn, _model_fqn
 from ccflow_celery.tasks import execute_model_task

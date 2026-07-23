@@ -1,12 +1,12 @@
-from typing import Any, Dict, Optional
+from typing import Any
 
 from ccflow import BaseModel
 from celery import Celery
 from pydantic import Field
 
 __all__ = (
-    "CeleryConfig",
     "CeleryApp",
+    "CeleryConfig",
 )
 
 
@@ -14,14 +14,14 @@ class CeleryConfig(BaseModel):
     """Configuration for a Celery application."""
 
     broker_url: str = Field(default="redis://localhost:6379/0", description="Celery broker URL")
-    result_backend: Optional[str] = Field(default="redis://localhost:6379/0", description="Celery result backend URL")
+    result_backend: str | None = Field(default="redis://localhost:6379/0", description="Celery result backend URL")
     task_serializer: str = "json"
     result_serializer: str = "json"
     accept_content: list = Field(default_factory=lambda: ["json"])
     task_track_started: bool = True
     task_default_queue: str = "default"
-    task_routes: Optional[Dict[str, str]] = None
-    worker_concurrency: Optional[int] = None
+    task_routes: dict[str, str] | None = None
+    worker_concurrency: int | None = None
     task_always_eager: bool = Field(default=False, description="If True, tasks execute locally without a broker")
     task_eager_propagates: bool = Field(default=True, description="If True, eager tasks propagate exceptions")
 
