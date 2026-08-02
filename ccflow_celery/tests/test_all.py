@@ -1,8 +1,4 @@
-<<<<<<< before updating
 from unittest.mock import MagicMock, patch
-=======
-from ccflow_celery import *
->>>>>>> after updating
 
 import pytest
 from ccflow import CallableModel, Flow, GenericResult, NullContext
