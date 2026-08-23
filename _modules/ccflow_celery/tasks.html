@@ -249,29 +249,29 @@
 
 <span class="n">_log</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;execute_model_task&quot;</span><span class="p">,)</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"execute_model_task"</span><span class="p">,)</span>
 
 
 <div class="viewcode-block" id="execute_model_task">
 <a class="viewcode-back" href="../../autoapi/ccflow_celery/tasks/index.html#ccflow_celery.tasks.execute_model_task">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">execute_model_task</span><span class="p">(</span><span class="n">model_class</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">context_class</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">context_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute a ccflow CallableModel on a Celery worker.</span>
+<span class="w">    </span><span class="sd">"""Execute a ccflow CallableModel on a Celery worker.</span>
 
 <span class="sd">    This is the Celery task function that reconstructs a model and context</span>
 <span class="sd">    from their serialized configurations and executes the model.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        model_class: Fully qualified class name (e.g., &quot;ccflow_s3.S3Model&quot;)</span>
+<span class="sd">        model_class: Fully qualified class name (e.g., "ccflow_s3.S3Model")</span>
 <span class="sd">        model_config: Dict of model configuration (pydantic model_dump)</span>
 <span class="sd">        context_class: Fully qualified class name for the context</span>
 <span class="sd">        context_config: Dict of context configuration (pydantic model_dump)</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        Dict representation of the result (model_dump)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_import_class</span><span class="p">(</span><span class="n">class_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-        <span class="n">module_path</span><span class="p">,</span> <span class="n">class_name</span> <span class="o">=</span> <span class="n">class_path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">module_path</span><span class="p">,</span> <span class="n">class_name</span> <span class="o">=</span> <span class="n">class_path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">"."</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">module_path</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">class_name</span><span class="p">)</span>
 
@@ -281,13 +281,13 @@
     <span class="n">model</span> <span class="o">=</span> <span class="n">model_cls</span><span class="p">(</span><span class="o">**</span><span class="n">model_config</span><span class="p">)</span>
     <span class="n">context</span> <span class="o">=</span> <span class="n">context_cls</span><span class="p">(</span><span class="o">**</span><span class="n">context_config</span><span class="p">)</span>
 
-    <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Executing </span><span class="si">%s</span><span class="s2"> with context </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">model_class</span><span class="p">,</span> <span class="n">context_class</span><span class="p">)</span>
+    <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Executing </span><span class="si">%s</span><span class="s2"> with context </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">model_class</span><span class="p">,</span> <span class="n">context_class</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;model_dump&quot;</span><span class="p">):</span>
-        <span class="c1"># Exclude type_ to avoid ccflow&#39;s polymorphic validator interfering on reconstruction</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type_&quot;</span><span class="p">})</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span></div>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s2">"model_dump"</span><span class="p">):</span>
+        <span class="c1"># Exclude type_ to avoid ccflow's polymorphic validator interfering on reconstruction</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">"type_"</span><span class="p">})</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">"value"</span><span class="p">:</span> <span class="n">result</span><span class="p">}</span></div>
 
 </pre></div>
         </article>

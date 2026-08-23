@@ -258,53 +258,53 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">.app</span><span class="w"> </span><span class="kn">import</span> <span class="n">CeleryApp</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="s2">&quot;CeleryEvaluator&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;CeleryGraphEvaluator&quot;</span><span class="p">,</span>
+    <span class="s2">"CeleryEvaluator"</span><span class="p">,</span>
+    <span class="s2">"CeleryGraphEvaluator"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">_log</span> <span class="o">=</span> <span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_resolve_origin</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resolve parameterized generics (e.g. GenericContext[int]) to their origin class.&quot;&quot;&quot;</span>
-    <span class="n">meta</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;__pydantic_generic_metadata__&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">meta</span> <span class="ow">and</span> <span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;origin&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">meta</span><span class="p">[</span><span class="s2">&quot;origin&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="sd">"""Resolve parameterized generics (e.g. GenericContext[int]) to their origin class."""</span>
+    <span class="n">meta</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">"__pydantic_generic_metadata__"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">meta</span> <span class="ow">and</span> <span class="n">meta</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"origin"</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">meta</span><span class="p">[</span><span class="s2">"origin"</span><span class="p">]</span>
     <span class="k">return</span> <span class="bp">cls</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_model_fqn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the fully qualified class name of a model.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Get the fully qualified class name of a model."""</span>
     <span class="bp">cls</span> <span class="o">=</span> <span class="n">_resolve_origin</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2">"</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_context_fqn</span><span class="p">(</span><span class="n">context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the fully qualified class name of a context.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Get the fully qualified class name of a context."""</span>
     <span class="bp">cls</span> <span class="o">=</span> <span class="n">_resolve_origin</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2">"</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_serialize_model</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serialize a model to (fqn, config_dict) for Celery task dispatch.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Serialize a model to (fqn, config_dict) for Celery task dispatch."""</span>
     <span class="n">fqn</span> <span class="o">=</span> <span class="n">_model_fqn</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type_&quot;</span><span class="p">})</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;model_dump&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">"type_"</span><span class="p">})</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"model_dump"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
     <span class="k">return</span> <span class="n">fqn</span><span class="p">,</span> <span class="n">config</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_serialize_context</span><span class="p">(</span><span class="n">ctx</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serialize a context to (fqn, config_dict) for Celery task dispatch.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Serialize a context to (fqn, config_dict) for Celery task dispatch."""</span>
     <span class="n">fqn</span> <span class="o">=</span> <span class="n">_context_fqn</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;type_&quot;</span><span class="p">})</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="s2">&quot;model_dump&quot;</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">ctx</span><span class="o">.</span><span class="n">model_dump</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s2">"type_"</span><span class="p">})</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="s2">"model_dump"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{}</span>
     <span class="k">return</span> <span class="n">fqn</span><span class="p">,</span> <span class="n">config</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_unwrap_eval_ctx</span><span class="p">(</span><span class="n">eval_ctx</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Unwrap evaluator-wrapping layers to get the actual model and context.</span>
+<span class="w">    </span><span class="sd">"""Unwrap evaluator-wrapping layers to get the actual model and context.</span>
 
 <span class="sd">    The dependency graph may wrap nodes as ModelEvaluationContext(model=evaluator,</span>
 <span class="sd">    context=ModelEvaluationContext(model=actual_model, context=actual_context)).</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">inner</span> <span class="o">=</span> <span class="n">eval_ctx</span>
     <span class="k">while</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inner</span><span class="o">.</span><span class="n">context</span><span class="p">,</span> <span class="n">ModelEvaluationContext</span><span class="p">):</span>
         <span class="n">inner</span> <span class="o">=</span> <span class="n">inner</span><span class="o">.</span><span class="n">context</span>
@@ -314,16 +314,16 @@
 <div class="viewcode-block" id="CeleryEvaluator">
 <a class="viewcode-back" href="../../autoapi/ccflow_celery/index.html#ccflow_celery.evaluators.CeleryEvaluator">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CeleryEvaluator</span><span class="p">(</span><span class="n">EvaluatorBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluator that dispatches model execution to Celery workers.</span>
+<span class="w">    </span><span class="sd">"""Evaluator that dispatches model execution to Celery workers.</span>
 
 <span class="sd">    Serializes the model and context, submits as a Celery task,</span>
 <span class="sd">    and waits for the result. The model must be reconstructable from its</span>
 <span class="sd">    Pydantic config dump.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">app</span><span class="p">:</span> <span class="n">CeleryApp</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">CeleryApp</span><span class="p">)</span>
-    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Timeout in seconds for waiting on task result&quot;</span><span class="p">)</span>
-    <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;ccflow_celery.tasks.execute_model_task&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Registered Celery task name&quot;</span><span class="p">)</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Timeout in seconds for waiting on task result"</span><span class="p">)</span>
+    <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">"ccflow_celery.tasks.execute_model_task"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Registered Celery task name"</span><span class="p">)</span>
 
     <span class="n">_celery_app</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
@@ -343,7 +343,7 @@
         <span class="n">ctx</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">context</span>
 
         <span class="c1"># For __deps__ calls or non-__call__ calls, execute locally</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s2">&quot;fn&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">context</span><span class="o">.</span><span class="n">fn</span> <span class="o">!=</span> <span class="s2">&quot;__call__&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s2">"fn"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">context</span><span class="o">.</span><span class="n">fn</span> <span class="o">!=</span> <span class="s2">"__call__"</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">context</span><span class="p">()</span>
 
         <span class="c1"># Serialize model and context</span>
@@ -352,7 +352,7 @@
 
         <span class="n">celery_app</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_celery_app</span><span class="p">()</span>
 
-        <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Submitting Celery task: </span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">model_class</span><span class="p">,</span> <span class="n">context_class</span><span class="p">)</span>
+        <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Submitting Celery task: </span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)"</span><span class="p">,</span> <span class="n">model_class</span><span class="p">,</span> <span class="n">context_class</span><span class="p">)</span>
 
         <span class="c1"># Send task to Celery</span>
         <span class="n">task</span> <span class="o">=</span> <span class="n">celery_app</span><span class="o">.</span><span class="n">send_task</span><span class="p">(</span>
@@ -362,10 +362,10 @@
 
         <span class="c1"># Wait for result</span>
         <span class="n">result_data</span> <span class="o">=</span> <span class="n">task</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
-        <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Celery task completed: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="n">_log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Celery task completed: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
 
         <span class="c1"># Reconstruct result</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;result_type&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"result_type"</span><span class="p">):</span>
             <span class="n">result_cls</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">result_type</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">result_cls</span><span class="p">(</span><span class="o">**</span><span class="n">result_data</span><span class="p">)</span>
@@ -380,16 +380,16 @@
 <div class="viewcode-block" id="CeleryGraphEvaluator">
 <a class="viewcode-back" href="../../autoapi/ccflow_celery/index.html#ccflow_celery.evaluators.CeleryGraphEvaluator">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CeleryGraphEvaluator</span><span class="p">(</span><span class="n">EvaluatorBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluator that parallelizes DAG execution via Celery.</span>
+<span class="w">    </span><span class="sd">"""Evaluator that parallelizes DAG execution via Celery.</span>
 
 <span class="sd">    Builds the dependency graph (like GraphEvaluator), then submits</span>
 <span class="sd">    independent nodes as parallel Celery tasks using Celery groups.</span>
 <span class="sd">    Nodes that depend on other nodes wait for their dependencies first.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">app</span><span class="p">:</span> <span class="n">CeleryApp</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="n">CeleryApp</span><span class="p">)</span>
-    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">600.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Timeout for the entire graph execution&quot;</span><span class="p">)</span>
-    <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;ccflow_celery.tasks.execute_model_task&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Registered Celery task name&quot;</span><span class="p">)</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">600.0</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Timeout for the entire graph execution"</span><span class="p">)</span>
+    <span class="n">task_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">"ccflow_celery.tasks.execute_model_task"</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">"Registered Celery task name"</span><span class="p">)</span>
 
     <span class="n">_celery_app</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">_is_evaluating</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">PrivateAttr</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -466,9 +466,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_is_evaluating</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># Reconstruct result for the root node</span>
-        <span class="k">if</span> <span class="n">root_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">root_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s2">"model"</span><span class="p">):</span>
             <span class="n">model</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">model</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;result_type&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">"result_type"</span><span class="p">):</span>
                 <span class="n">result_cls</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">result_type</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">result_cls</span><span class="p">(</span><span class="o">**</span><span class="n">root_result</span><span class="p">)</span>
