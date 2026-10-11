@@ -171,7 +171,6 @@ class TestCeleryEvaluator:
         # __deps__ doesn't exist on the model, so let's mock it
         model.__deps__ = MagicMock(return_value=[])
         eval_ctx.model = model
-        eval_ctx.__call__ = lambda: model.__deps__()
 
         _ = ev(eval_ctx)
         model.__deps__.assert_called_once()
