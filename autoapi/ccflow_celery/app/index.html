@@ -211,6 +211,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../tasks/index.html">ccflow_celery.tasks</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../test_lazy_import/index.html">test_lazy_import</a></li>
 </ul>
 </li>
 </ul>
@@ -281,12 +282,12 @@ validated to form a valid model.</p>
 <p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ccflow_celery.app.CeleryConfig.broker_url">
-<span class="sig-name descname"><span class="pre">broker_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.broker_url" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">broker_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.broker_url" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ccflow_celery.app.CeleryConfig.result_backend">
-<span class="sig-name descname"><span class="pre">result_backend</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.result_backend" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">result_backend</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.result_backend" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -301,7 +302,7 @@ validated to form a valid model.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ccflow_celery.app.CeleryConfig.accept_content">
-<span class="sig-name descname"><span class="pre">accept_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.accept_content" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">accept_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.accept_content" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -326,12 +327,12 @@ validated to form a valid model.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ccflow_celery.app.CeleryConfig.task_always_eager">
-<span class="sig-name descname"><span class="pre">task_always_eager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.task_always_eager" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">task_always_eager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.task_always_eager" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ccflow_celery.app.CeleryConfig.task_eager_propagates">
-<span class="sig-name descname"><span class="pre">task_eager_propagates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.task_eager_propagates" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">task_eager_propagates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryConfig.task_eager_propagates" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -347,12 +348,12 @@ validated to form a valid model.</p>
 <p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ccflow_celery.app.CeleryApp.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryApp.name" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryApp.name" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="ccflow_celery.app.CeleryApp.config">
-<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#ccflow_celery.app.CeleryConfig" title="ccflow_celery.app.CeleryConfig"><span class="pre">CeleryConfig</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.app.CeleryApp.config" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#ccflow_celery.app.CeleryConfig" title="ccflow_celery.app.CeleryConfig"><span class="pre">CeleryConfig</span></a></em><a class="headerlink" href="#ccflow_celery.app.CeleryApp.config" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">

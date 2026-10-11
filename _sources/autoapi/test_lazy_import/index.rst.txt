@@ -1,0 +1,19 @@
+test_lazy_import
+================
+
+.. py:module:: test_lazy_import
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_lazy_import.test_locating_config_package_does_not_import_ccflow
+
+
+Module Contents
+---------------
+
+.. py:function:: test_locating_config_package_does_not_import_ccflow()
+

@@ -33,14 +33,10 @@ Module Contents
 
    .. py:attribute:: broker_url
       :type:  str
-      :value: None
-
 
 
    .. py:attribute:: result_backend
       :type:  str | None
-      :value: None
-
 
 
    .. py:attribute:: task_serializer
@@ -57,8 +53,6 @@ Module Contents
 
    .. py:attribute:: accept_content
       :type:  list
-      :value: None
-
 
 
    .. py:attribute:: task_track_started
@@ -87,14 +81,10 @@ Module Contents
 
    .. py:attribute:: task_always_eager
       :type:  bool
-      :value: None
-
 
 
    .. py:attribute:: task_eager_propagates
       :type:  bool
-      :value: None
-
 
 
 .. py:class:: CeleryApp(/, **data: Any)
@@ -114,14 +104,10 @@ Module Contents
 
    .. py:attribute:: name
       :type:  str
-      :value: None
-
 
 
    .. py:attribute:: config
       :type:  CeleryConfig
-      :value: None
-
 
 
    .. py:attribute:: _app

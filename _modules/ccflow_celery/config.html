@@ -210,6 +210,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../autoapi/ccflow_celery/tasks/index.html">ccflow_celery.tasks</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../autoapi/test_lazy_import/index.html">test_lazy_import</a></li>
 </ul>
 </li>
 </ul>
@@ -245,10 +246,13 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for ccflow_celery.config</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">ccflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelRegistry</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ccflow.utils.hydra</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigLoadResult</span><span class="p">,</span> <span class="n">load_config</span> <span class="k">as</span> <span class="n">base_load_config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ccflow.utils.hydra</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConfigLoadResult</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"load_config"</span><span class="p">,)</span>
 
@@ -262,6 +266,10 @@
     <span class="n">config_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">version_base</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ConfigLoadResult</span><span class="p">:</span>
+    <span class="c1"># Imported here so lerna can locate this config package without importing ccflow</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ccflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelRegistry</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">ccflow.utils.hydra</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_config</span> <span class="k">as</span> <span class="n">base_load_config</span>
+
     <span class="n">parent_dir</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
     <span class="n">result</span> <span class="o">=</span> <span class="n">base_load_config</span><span class="p">(</span>
         <span class="n">root_config_dir</span><span class="o">=</span><span class="n">parent_dir</span><span class="p">,</span>

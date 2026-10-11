@@ -37,26 +37,18 @@ Module Contents
 
    .. py:attribute:: app
       :type:  ccflow_celery.app.CeleryApp
-      :value: None
-
 
 
    .. py:attribute:: timeout
       :type:  float | None
-      :value: None
-
 
 
    .. py:attribute:: task_name
       :type:  str
-      :value: None
-
 
 
    .. py:attribute:: _celery_app
       :type:  Any
-      :value: None
-
 
 
    .. py:method:: _get_celery_app()
@@ -92,32 +84,22 @@ Module Contents
 
    .. py:attribute:: app
       :type:  ccflow_celery.app.CeleryApp
-      :value: None
-
 
 
    .. py:attribute:: timeout
       :type:  float | None
-      :value: None
-
 
 
    .. py:attribute:: task_name
       :type:  str
-      :value: None
-
 
 
    .. py:attribute:: _celery_app
       :type:  Any
-      :value: None
-
 
 
    .. py:attribute:: _is_evaluating
       :type:  bool
-      :value: None
-
 
 
    .. py:method:: _get_celery_app()

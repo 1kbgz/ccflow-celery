@@ -210,6 +210,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../autoapi/ccflow_celery/tasks/index.html">ccflow_celery.tasks</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../autoapi/test_lazy_import/index.html">test_lazy_import</a></li>
 </ul>
 </li>
 </ul>
@@ -258,7 +259,7 @@
 
 
 <div class="viewcode-block" id="CeleryConfig">
-<a class="viewcode-back" href="../../autoapi/ccflow_celery/index.html#ccflow_celery.app.CeleryConfig">[docs]</a>
+<a class="viewcode-back" href="../../autoapi/ccflow_celery/app/index.html#ccflow_celery.app.CeleryConfig">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CeleryConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Configuration for a Celery application."""</span>
 
@@ -277,7 +278,7 @@
 
 
 <div class="viewcode-block" id="CeleryApp">
-<a class="viewcode-back" href="../../autoapi/ccflow_celery/index.html#ccflow_celery.app.CeleryApp">[docs]</a>
+<a class="viewcode-back" href="../../autoapi/ccflow_celery/app/index.html#ccflow_celery.app.CeleryApp">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CeleryApp</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Wrapper around a Celery application instance."""</span>
 
@@ -287,7 +288,7 @@
     <span class="n">_app</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="CeleryApp.get_app">
-<a class="viewcode-back" href="../../autoapi/ccflow_celery/index.html#ccflow_celery.app.CeleryApp.get_app">[docs]</a>
+<a class="viewcode-back" href="../../autoapi/ccflow_celery/app/index.html#ccflow_celery.app.CeleryApp.get_app">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_app</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>

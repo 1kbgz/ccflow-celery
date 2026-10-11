@@ -81,7 +81,7 @@ Module Contents
    `self` is explicitly positional-only to allow `self` as a field name.
 
 
-   .. py:method:: __call__(context: _DummyContext) -> ccflow_celery.GenericResult
+   .. py:method:: __call__(context: _DummyContext) -> ccflow.GenericResult
 
       This method produces the result for the given context.
 

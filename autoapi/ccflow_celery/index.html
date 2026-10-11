@@ -211,6 +211,7 @@
 <li class="toctree-l3"><a class="reference internal" href="tasks/index.html">ccflow_celery.tasks</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../test_lazy_import/index.html">test_lazy_import</a></li>
 </ul>
 </li>
 </ul>
@@ -277,22 +278,13 @@
 </table>
 </div>
 </section>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ccflow_celery.CeleryApp" title="ccflow_celery.CeleryApp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CeleryApp</span></code></a></p></td>
-<td><p>Wrapper around a Celery application instance.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ccflow_celery.CeleryConfig" title="ccflow_celery.CeleryConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CeleryConfig</span></code></a></p></td>
-<td><p>Configuration for a Celery application.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#ccflow_celery.CeleryEvaluator" title="ccflow_celery.CeleryEvaluator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CeleryEvaluator</span></code></a></p></td>
-<td><p>Evaluator that dispatches model execution to Celery workers.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator" title="ccflow_celery.CeleryGraphEvaluator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CeleryGraphEvaluator</span></code></a></p></td>
-<td><p>Evaluator that parallelizes DAG execution via Celery.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ccflow_celery.__getattr__" title="ccflow_celery.__getattr__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__getattr__</span></code></a>(→ object)</p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
@@ -300,205 +292,14 @@
 </section>
 <section id="package-contents">
 <h2>Package Contents<a class="headerlink" href="#package-contents" title="Link to this heading">¶</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryApp">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ccflow_celery.</span></span><span class="sig-name descname"><span class="pre">CeleryApp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ccflow_celery/app.html#CeleryApp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryApp" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ccflow.BaseModel</span></code></p>
-<p>Wrapper around a Celery application instance.</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
-validated to form a valid model.</p>
-<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryApp.name">
-<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryApp.name" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryApp.config">
-<span class="sig-name descname"><span class="pre">config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#ccflow_celery.CeleryConfig" title="ccflow_celery.CeleryConfig"><span class="pre">CeleryConfig</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryApp.config" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryApp._app">
-<span class="sig-name descname"><span class="pre">_app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryApp._app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryApp.get_app">
-<span class="sig-name descname"><span class="pre">get_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ccflow_celery/app.html#CeleryApp.get_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryApp.get_app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ccflow_celery.</span></span><span class="sig-name descname"><span class="pre">CeleryConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ccflow_celery/app.html#CeleryConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryConfig" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ccflow.BaseModel</span></code></p>
-<p>Configuration for a Celery application.</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
-validated to form a valid model.</p>
-<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.broker_url">
-<span class="sig-name descname"><span class="pre">broker_url</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.broker_url" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.result_backend">
-<span class="sig-name descname"><span class="pre">result_backend</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.result_backend" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.task_serializer">
-<span class="sig-name descname"><span class="pre">task_serializer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'json'</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.task_serializer" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.result_serializer">
-<span class="sig-name descname"><span class="pre">result_serializer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'json'</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.result_serializer" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.accept_content">
-<span class="sig-name descname"><span class="pre">accept_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.accept_content" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.task_track_started">
-<span class="sig-name descname"><span class="pre">task_track_started</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.task_track_started" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.task_default_queue">
-<span class="sig-name descname"><span class="pre">task_default_queue</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'default'</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.task_default_queue" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.task_routes">
-<span class="sig-name descname"><span class="pre">task_routes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.task_routes" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.worker_concurrency">
-<span class="sig-name descname"><span class="pre">worker_concurrency</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.worker_concurrency" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.task_always_eager">
-<span class="sig-name descname"><span class="pre">task_always_eager</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.task_always_eager" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryConfig.task_eager_propagates">
-<span class="sig-name descname"><span class="pre">task_eager_propagates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryConfig.task_eager_propagates" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryEvaluator">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ccflow_celery.</span></span><span class="sig-name descname"><span class="pre">CeleryEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ccflow_celery/evaluators.html#CeleryEvaluator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryEvaluator" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ccflow.EvaluatorBase</span></code></p>
-<p>Evaluator that dispatches model execution to Celery workers.</p>
-<p>Serializes the model and context, submits as a Celery task,
-and waits for the result. The model must be reconstructable from its
-Pydantic config dump.</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
-validated to form a valid model.</p>
-<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryEvaluator.app">
-<span class="sig-name descname"><span class="pre">app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="app/index.html#ccflow_celery.app.CeleryApp" title="ccflow_celery.app.CeleryApp"><span class="pre">ccflow_celery.app.CeleryApp</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryEvaluator.app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryEvaluator.timeout">
-<span class="sig-name descname"><span class="pre">timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryEvaluator.timeout" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryEvaluator.task_name">
-<span class="sig-name descname"><span class="pre">task_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryEvaluator.task_name" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryEvaluator._celery_app">
-<span class="sig-name descname"><span class="pre">_celery_app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryEvaluator._celery_app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryEvaluator._get_celery_app">
-<span class="sig-name descname"><span class="pre">_get_celery_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ccflow_celery/evaluators.html#CeleryEvaluator._get_celery_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryEvaluator._get_celery_app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryEvaluator.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ccflow.callable.ModelEvaluationContext</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/ccflow_celery/evaluators.html#CeleryEvaluator.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryEvaluator.__call__" title="Link to this definition">¶</a></dt>
-<dd><p>This method produces the result for the given context.</p>
-<p>Instead of passing the context, one can pass an object that pydantic will try to validate as the context.
-Additionally, if kwargs are passed instead of the context, it will use these to construct the context.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ccflow_celery.</span></span><span class="sig-name descname"><span class="pre">CeleryGraphEvaluator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**data:</span> <span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ccflow_celery/evaluators.html#CeleryGraphEvaluator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-obj docutils literal notranslate"><span class="pre">ccflow.EvaluatorBase</span></code></p>
-<p>Evaluator that parallelizes DAG execution via Celery.</p>
-<p>Builds the dependency graph (like GraphEvaluator), then submits
-independent nodes as parallel Celery tasks using Celery groups.
-Nodes that depend on other nodes wait for their dependencies first.</p>
-<p>Create a new model by parsing and validating input data from keyword arguments.</p>
-<p>Raises [<cite>ValidationError</cite>][pydantic_core.ValidationError] if the input data cannot be
-validated to form a valid model.</p>
-<p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator.app">
-<span class="sig-name descname"><span class="pre">app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="app/index.html#ccflow_celery.app.CeleryApp" title="ccflow_celery.app.CeleryApp"><span class="pre">ccflow_celery.app.CeleryApp</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator.app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator.timeout">
-<span class="sig-name descname"><span class="pre">timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator.timeout" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator.task_name">
-<span class="sig-name descname"><span class="pre">task_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator.task_name" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator._celery_app">
-<span class="sig-name descname"><span class="pre">_celery_app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator._celery_app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator._is_evaluating">
-<span class="sig-name descname"><span class="pre">_is_evaluating</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator._is_evaluating" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator._get_celery_app">
-<span class="sig-name descname"><span class="pre">_get_celery_app</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/ccflow_celery/evaluators.html#CeleryGraphEvaluator._get_celery_app"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator._get_celery_app" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="ccflow_celery.CeleryGraphEvaluator.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ccflow.callable.ModelEvaluationContext</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="../../_modules/ccflow_celery/evaluators.html#CeleryGraphEvaluator.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.CeleryGraphEvaluator.__call__" title="Link to this definition">¶</a></dt>
-<dd><p>This method produces the result for the given context.</p>
-<p>Instead of passing the context, one can pass an object that pydantic will try to validate as the context.
-Additionally, if kwargs are passed instead of the context, it will use these to construct the context.</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py data">
 <dt class="sig sig-object py" id="ccflow_celery.__version__">
 <span class="sig-prename descclassname"><span class="pre">ccflow_celery.</span></span><span class="sig-name descname"><span class="pre">__version__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'0.1.0'</span></em><a class="headerlink" href="#ccflow_celery.__version__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ccflow_celery.__getattr__">
+<span class="sig-prename descclassname"><span class="pre">ccflow_celery.</span></span><span class="sig-name descname"><span class="pre">__getattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="reference internal" href="../../_modules/ccflow_celery.html#__getattr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ccflow_celery.__getattr__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -562,49 +363,10 @@ Additionally, if kwargs are passed instead of the context, it will use these to 
 <li><a class="reference internal" href="#">ccflow_celery</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#attributes">Attributes</a></li>
-<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
-<li><a class="reference internal" href="#ccflow_celery.CeleryApp"><code class="docutils literal notranslate"><span class="pre">CeleryApp</span></code></a><ul>
-<li><a class="reference internal" href="#ccflow_celery.CeleryApp.name"><code class="docutils literal notranslate"><span class="pre">CeleryApp.name</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryApp.config"><code class="docutils literal notranslate"><span class="pre">CeleryApp.config</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryApp._app"><code class="docutils literal notranslate"><span class="pre">CeleryApp._app</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryApp.get_app"><code class="docutils literal notranslate"><span class="pre">CeleryApp.get_app()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig"><code class="docutils literal notranslate"><span class="pre">CeleryConfig</span></code></a><ul>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.broker_url"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.broker_url</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.result_backend"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.result_backend</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.task_serializer"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.task_serializer</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.result_serializer"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.result_serializer</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.accept_content"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.accept_content</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.task_track_started"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.task_track_started</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.task_default_queue"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.task_default_queue</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.task_routes"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.task_routes</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.worker_concurrency"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.worker_concurrency</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.task_always_eager"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.task_always_eager</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryConfig.task_eager_propagates"><code class="docutils literal notranslate"><span class="pre">CeleryConfig.task_eager_propagates</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryEvaluator"><code class="docutils literal notranslate"><span class="pre">CeleryEvaluator</span></code></a><ul>
-<li><a class="reference internal" href="#ccflow_celery.CeleryEvaluator.app"><code class="docutils literal notranslate"><span class="pre">CeleryEvaluator.app</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryEvaluator.timeout"><code class="docutils literal notranslate"><span class="pre">CeleryEvaluator.timeout</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryEvaluator.task_name"><code class="docutils literal notranslate"><span class="pre">CeleryEvaluator.task_name</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryEvaluator._celery_app"><code class="docutils literal notranslate"><span class="pre">CeleryEvaluator._celery_app</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryEvaluator._get_celery_app"><code class="docutils literal notranslate"><span class="pre">CeleryEvaluator._get_celery_app()</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryEvaluator.__call__"><code class="docutils literal notranslate"><span class="pre">CeleryEvaluator.__call__()</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator</span></code></a><ul>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator.app"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator.app</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator.timeout"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator.timeout</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator.task_name"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator.task_name</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator._celery_app"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator._celery_app</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator._is_evaluating"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator._is_evaluating</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator._get_celery_app"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator._get_celery_app()</span></code></a></li>
-<li><a class="reference internal" href="#ccflow_celery.CeleryGraphEvaluator.__call__"><code class="docutils literal notranslate"><span class="pre">CeleryGraphEvaluator.__call__()</span></code></a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#ccflow_celery.__version__"><code class="docutils literal notranslate"><span class="pre">__version__</span></code></a></li>
+<li><a class="reference internal" href="#ccflow_celery.__getattr__"><code class="docutils literal notranslate"><span class="pre">__getattr__()</span></code></a></li>
 </ul>
 </li>
 </ul>
