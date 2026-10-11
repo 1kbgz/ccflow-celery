@@ -15,5 +15,5 @@ Functions
 Package Contents
 ----------------
 
-.. py:function:: load_config(overrides: list[str] | None = None, overwrite: bool = False, config_dir: str | None = None, config_key: str | None = None, version_base: str | None = None) -> ccflow.utils.hydra.ConfigLoadResult
+.. py:function:: load_config(overrides: list[str] | None = None, overwrite: bool = False, config_dir: str | None = None, config_key: str | None = None, version_base: str | None = None) -> ccflow.ModelRegistry
 

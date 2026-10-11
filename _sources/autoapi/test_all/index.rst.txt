@@ -81,7 +81,7 @@ Module Contents
    `self` is explicitly positional-only to allow `self` as a field name.
 
 
-   .. py:method:: __call__(context: _DummyContext) -> ccflow.GenericResult
+   .. py:method:: __call__(context: _DummyContext) -> ccflow_celery.GenericResult
 
       This method produces the result for the given context.
 
@@ -151,7 +151,7 @@ Module Contents
 
 
 
-   .. py:method:: test_result_reconstruction_with_result_type(MockCelery)
+   .. py:method:: test_result_reconstruction_with_result_type(MockCelery, monkeypatch, reconstruct)
 
       When model has result_type, evaluator reconstructs from it.
 
@@ -171,7 +171,7 @@ Module Contents
 
 
 
-   .. py:method:: test_single_node_graph(MockCelery, mock_get_dep)
+   .. py:method:: test_single_node_graph(MockCelery, mock_get_dep, monkeypatch, reconstruct)
 
       Graph with one node dispatches via apply_async directly (no group).
 

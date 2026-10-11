@@ -361,7 +361,7 @@ validated to form a valid model.</p>
 <p><cite>self</cite> is explicitly positional-only to allow <cite>self</cite> as a field name.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="test_all._DummyModel.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#test_all._DummyContext" title="test_all._DummyContext"><span class="pre">_DummyContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ccflow.GenericResult</span></span></span><a class="headerlink" href="#test_all._DummyModel.__call__" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#test_all._DummyContext" title="test_all._DummyContext"><span class="pre">_DummyContext</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ccflow_celery.GenericResult</span></span></span><a class="headerlink" href="#test_all._DummyModel.__call__" title="Link to this definition">¶</a></dt>
 <dd><p>This method produces the result for the given context.</p>
 <p>Instead of passing the context, one can pass an object that pydantic will try to validate as the context.
 Additionally, if kwargs are passed instead of the context, it will use these to construct the context.</p>
@@ -458,7 +458,7 @@ Additionally, if kwargs are passed instead of the context, it will use these to 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_all.TestCeleryEvaluator.test_result_reconstruction_with_result_type">
-<span class="sig-name descname"><span class="pre">test_result_reconstruction_with_result_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MockCelery</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_all.TestCeleryEvaluator.test_result_reconstruction_with_result_type" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_result_reconstruction_with_result_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MockCelery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reconstruct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_all.TestCeleryEvaluator.test_result_reconstruction_with_result_type" title="Link to this definition">¶</a></dt>
 <dd><p>When model has result_type, evaluator reconstructs from it.</p>
 </dd></dl>
 
@@ -485,7 +485,7 @@ Additionally, if kwargs are passed instead of the context, it will use these to 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_all.TestCeleryGraphEvaluator.test_single_node_graph">
-<span class="sig-name descname"><span class="pre">test_single_node_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MockCelery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mock_get_dep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_all.TestCeleryGraphEvaluator.test_single_node_graph" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">test_single_node_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">MockCelery</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mock_get_dep</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">monkeypatch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reconstruct</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_all.TestCeleryGraphEvaluator.test_single_node_graph" title="Link to this definition">¶</a></dt>
 <dd><p>Graph with one node dispatches via apply_async directly (no group).</p>
 </dd></dl>
 
