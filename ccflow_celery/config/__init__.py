@@ -1,7 +1,10 @@
-from pathlib import Path
+from __future__ import annotations
 
-from ccflow import ModelRegistry
-from ccflow.utils.hydra import load_config as base_load_config
+from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ccflow import ModelRegistry
 
 __all__ = ("load_config",)
 
@@ -13,6 +16,10 @@ def load_config(
     config_key: str | None = None,
     version_base: str | None = None,
 ) -> ModelRegistry:
+    # Imported here so lerna can locate this config package without importing ccflow
+    from ccflow import ModelRegistry
+    from ccflow.utils.hydra import load_config as base_load_config
+
     parent_dir = str(Path(__file__).resolve().parent)
     result = base_load_config(
         root_config_dir=parent_dir,

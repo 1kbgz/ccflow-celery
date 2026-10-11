@@ -1,4 +1,23 @@
-from .app import *
-from .evaluators import *
-
 __version__ = "0.1.0"
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .app import *
+    from .evaluators import *
+
+
+def __getattr__(name: str) -> object:
+    # Submodules are imported on first access so that lerna can locate
+    # ccflow_celery.config without importing ccflow
+    from importlib import import_module
+
+    namespace = globals()
+    for submodule in ("app", "evaluators"):
+        module = import_module(f"{__name__}.{submodule}")
+        namespace.update({n: getattr(module, n) for n in module.__all__})
+    if name in namespace:
+        return namespace[name]
+    msg = f"module {__name__!r} has no attribute {name!r}"
+    raise AttributeError(msg)
