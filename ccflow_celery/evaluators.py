@@ -115,7 +115,8 @@ class CeleryEvaluator(EvaluatorBase):
         if hasattr(model, "result_type"):
             result_cls = model.result_type
             try:
-                return result_cls(**result_data)
+                if callable(result_cls):
+                    return result_cls(**result_data)
             except (TypeError, ValueError):
                 pass
 
@@ -209,7 +210,8 @@ class CeleryGraphEvaluator(EvaluatorBase):
             if hasattr(model, "result_type"):
                 result_cls = model.result_type
                 try:
-                    return result_cls(**root_result)
+                    if callable(result_cls):
+                        return result_cls(**root_result)
                 except (TypeError, ValueError):
                     pass
 

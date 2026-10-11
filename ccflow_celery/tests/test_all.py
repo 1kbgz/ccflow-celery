@@ -171,13 +171,13 @@ class TestCeleryEvaluator:
         # __deps__ doesn't exist on the model, so let's mock it
         model.__deps__ = MagicMock(return_value=[])
         eval_ctx.model = model
-        eval_ctx.__call__ = lambda: model.__deps__()
 
         _ = ev(eval_ctx)
         model.__deps__.assert_called_once()
 
     @patch("ccflow_celery.app.Celery")
-    def test_result_reconstruction_with_result_type(self, MockCelery):
+    @pytest.mark.parametrize("reconstruct", [True, False])
+    def test_result_reconstruction_with_result_type(self, MockCelery, monkeypatch, reconstruct):
         """When model has result_type, evaluator reconstructs from it."""
         mock_app = MagicMock()
         MockCelery.return_value = mock_app
@@ -187,13 +187,15 @@ class TestCeleryEvaluator:
 
         ev = self._make_evaluator()
         model = _DummyModel()
+        if not reconstruct:
+            monkeypatch.setattr(_DummyModel, "result_type", property(lambda self: None))
         ctx = _DummyContext()
         eval_ctx = _FakeEvalContext(model, ctx)
 
         result = ev(eval_ctx)
         # DummyModel inherits result_type from CallableModel → GenericResult
         assert isinstance(result, GenericResult)
-        assert result.value == "reconstructed"
+        assert result.value == ("reconstructed" if reconstruct else {"value": "reconstructed"})
 
     @patch("ccflow_celery.app.Celery")
     def test_celery_app_caching(self, MockCelery):
@@ -233,12 +235,15 @@ class TestCeleryGraphEvaluator:
 
     @patch("ccflow_celery.evaluators.get_dependency_graph")
     @patch("ccflow_celery.app.Celery")
-    def test_single_node_graph(self, MockCelery, mock_get_dep):
+    @pytest.mark.parametrize("reconstruct", [True, False])
+    def test_single_node_graph(self, MockCelery, mock_get_dep, monkeypatch, reconstruct):
         """Graph with one node dispatches via apply_async directly (no group)."""
         mock_app = MagicMock()
         MockCelery.return_value = mock_app
 
         model = _DummyModel()
+        if not reconstruct:
+            monkeypatch.setattr(_DummyModel, "result_type", property(lambda self: None))
         ctx = _DummyContext()
         eval_ctx_inner = _FakeEvalContext(model, ctx)
 
@@ -265,6 +270,7 @@ class TestCeleryGraphEvaluator:
         mock_app.signature.assert_called_once()
         mock_sig.apply_async.assert_called_once()
         assert isinstance(result, GenericResult)
+        assert result.value == ("root_val" if reconstruct else {"value": "root_val"})
 
     @patch("ccflow_celery.evaluators.get_dependency_graph")
     @patch("ccflow_celery.evaluators.group")

@@ -1,6 +1,13 @@
 __version__ = "0.1.0"
 
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from .app import *
+    from .evaluators import *
+
+
 def __getattr__(name: str) -> object:
     # Submodules are imported on first access so that lerna can locate
     # ccflow_celery.config without importing ccflow
