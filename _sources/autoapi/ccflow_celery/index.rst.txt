@@ -37,7 +37,7 @@ Package Contents
 ----------------
 
 .. py:data:: __version__
-   :value: '0.1.0'
+   :value: '0.1.1'
 
 
 .. py:function:: __getattr__(name: str) -> object
