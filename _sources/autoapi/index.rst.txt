@@ -7,6 +7,7 @@ This page contains auto-generated API reference documentation [#f1]_.
    :titlesonly:
 
    /autoapi/test_all/index
+   /autoapi/test_config/index
    /autoapi/ccflow_celery/index
    /autoapi/test_lazy_import/index
 

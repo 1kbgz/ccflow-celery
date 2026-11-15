@@ -1,0 +1,35 @@
+test_config
+===========
+
+.. py:module:: test_config
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   test_config.CONFIG_ROOT
+   test_config.EVALUATORS
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   test_config.test_packaged_evaluator_configs_instantiate
+   test_config.test_broker_urls_read_ccflow_celery_env
+
+
+Module Contents
+---------------
+
+.. py:data:: CONFIG_ROOT
+
+.. py:data:: EVALUATORS
+
+.. py:function:: test_packaged_evaluator_configs_instantiate(name)
+
+.. py:function:: test_broker_urls_read_ccflow_celery_env(monkeypatch)
+
