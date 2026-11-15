@@ -8,11 +8,11 @@ evaluator:
   _target_: ccflow.evaluators.MultiEvaluator
   evaluators:
     - _target_: ccflow_celery.CeleryGraphEvaluator
-      celery_app:
+      app:
         _target_: ccflow_celery.CeleryApp
         name: ccflow
         config:
           _target_: ccflow_celery.CeleryConfig
-          broker_url: ${oc.env:CELERY_BROKER_URL,redis://localhost:6379/0}
-          result_backend: ${oc.env:CELERY_RESULT_BACKEND,redis://localhost:6379/1}
+          broker_url: ${oc.env:CCFLOW_CELERY_BROKER_URL,redis://localhost:6379/0}
+          result_backend: ${oc.env:CCFLOW_CELERY_RESULT_BACKEND,redis://localhost:6379/1}
     - _target_: ccflow.evaluators.MemoryCacheEvaluator
